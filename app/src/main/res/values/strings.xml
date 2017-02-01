@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Android seed</string>
+    <string name="network_error_toast">Network error, please check your internet connection and retry.</string>
 </resources>
