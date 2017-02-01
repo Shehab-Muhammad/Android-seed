@@ -5,15 +5,24 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.seniors.androidseed.R;
+import com.seniors.androidseed.data.Model.ReposResponse;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity implements MainView {
+
+    @Inject
+    MainPresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mPresenter.attach(this);
+        mPresenter.loadRepos();
     }
 
     @Override
@@ -28,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public void showRepos(List<String> repos) {
+    public void showRepos(ReposResponse repos) {
 
     }
 }
