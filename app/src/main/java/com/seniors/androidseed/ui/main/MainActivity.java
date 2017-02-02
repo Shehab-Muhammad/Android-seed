@@ -1,20 +1,29 @@
 package com.seniors.androidseed.ui.main;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.seniors.androidseed.R;
 import com.seniors.androidseed.data.Model.ReposResponse;
-
-import java.util.List;
+import com.seniors.androidseed.dependency.components.AppComponent;
+import com.seniors.androidseed.dependency.components.DaggerMainComponent;
+import com.seniors.androidseed.dependency.modules.ActivityModule;
+import com.seniors.androidseed.ui.base.BaseActivity;
 
 import javax.inject.Inject;
 
-public class MainActivity extends AppCompatActivity implements MainView {
+public class MainActivity extends BaseActivity implements MainView {
 
     @Inject
     MainPresenter mPresenter;
+
+    @Override
+    protected void setupActivityComponent(AppComponent appComponent) {
+        DaggerMainComponent.builder()
+                .appComponent(appComponent)
+                .activityModule(new ActivityModule(this))
+                .build().inject(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         setContentView(R.layout.activity_main);
 
         mPresenter.attach(this);
-        mPresenter.loadRepos();
+//        mPresenter.loadRepos();
     }
 
     @Override

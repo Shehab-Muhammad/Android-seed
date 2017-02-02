@@ -1,8 +1,9 @@
 package com.seniors.androidseed.dependency.components;
 
 import com.seniors.androidseed.data.Api;
+import com.seniors.androidseed.data.DataManager;
 import com.seniors.androidseed.dependency.ApplicationScope;
-import com.seniors.androidseed.dependency.modules.ApiModule;
+import com.seniors.androidseed.dependency.modules.DataModule;
 
 import dagger.Component;
 
@@ -11,7 +12,9 @@ import dagger.Component;
  */
 
 @ApplicationScope
-@Component(modules = ApiModule.class)
+@Component(modules = DataModule.class)
 public interface AppComponent {
     Api getApi();
+
+    DataManager getManager();
 }
