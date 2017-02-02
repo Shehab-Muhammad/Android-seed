@@ -31,7 +31,6 @@ public class MainActivity extends BaseActivity implements MainView {
         setContentView(R.layout.activity_main);
 
         mPresenter.attach(this);
-//        mPresenter.loadRepos();
     }
 
     @Override
@@ -43,6 +42,12 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public void showEmptyRepos() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.detach(this);
     }
 
     @Override
