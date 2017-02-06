@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Android seed</string>
     <string name="network_error_toast">Network error, please check your internet connection and retry.</string>
+    <string name="login_text">Enter your login</string>
+    <string name="login_hint">Username</string>
+    <string name="login_button">Login</string>
 </resources>
