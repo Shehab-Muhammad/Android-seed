@@ -23,6 +23,9 @@ import butterknife.OnClick;
  */
 
 public class LoginActivity extends BaseActivity implements LoginView {
+
+    final static public String ARG_IS_ADDING_NEW_ACCOUNT = "IS_ADDING_ACCOUNT";
+
     @Inject
     LoginPresenter mPresenter;
 
@@ -37,8 +40,10 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void startMainActivity() {
-        Intent mainIntent = new Intent(this, MainActivity.class);
-        startActivity(mainIntent);
+        if(!getIntent().getBooleanExtra(ARG_IS_ADDING_NEW_ACCOUNT, false)){
+            Intent mainIntent = new Intent(this, MainActivity.class);
+            startActivity(mainIntent);
+        }
         finish();
     }
 
