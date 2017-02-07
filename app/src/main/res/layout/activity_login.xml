@@ -24,6 +24,19 @@
             android:id="@+id/username" />
     </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/login_password_hint"
+            android:id="@+id/password"
+            android:inputType="textPassword" />
+    </android.support.design.widget.TextInputLayout>
+
     <Button
         android:text="@string/login_button"
         android:layout_width="match_parent"

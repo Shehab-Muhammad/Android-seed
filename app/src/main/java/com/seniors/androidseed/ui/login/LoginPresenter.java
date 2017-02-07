@@ -12,6 +12,7 @@ import javax.inject.Inject;
  */
 
 public class LoginPresenter extends BasePresenter<LoginView> {
+    final static String CLASS_TAG = "Login Presenter";
 
     @Inject
     LoginPresenter(){
@@ -24,5 +25,9 @@ public class LoginPresenter extends BasePresenter<LoginView> {
             return true;
         }
         return false;
+    }
+
+    void login(String username, String password){
+
     }
 }

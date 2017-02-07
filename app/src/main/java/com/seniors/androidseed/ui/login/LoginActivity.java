@@ -3,6 +3,7 @@ package com.seniors.androidseed.ui.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.seniors.androidseed.R;
 import com.seniors.androidseed.dependency.components.AppComponent;
@@ -28,6 +29,12 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @BindView(R.id.loginButton)
     Button loginButton;
 
+    @BindView(R.id.password)
+    EditText userPassword;
+
+    @BindView(R.id.username)
+    EditText username;
+
     @Override
     public void startMainActivity() {
         Intent mainIntent = new Intent(this, MainActivity.class);
@@ -48,7 +55,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @OnClick(R.id.loginButton)
     void login(){
-        startMainActivity();
+        mPresenter.login(username.getText().toString(), userPassword.getText().toString());
     }
 
     @Override
