@@ -1,12 +1,12 @@
 package com.seniors.androidseed.dependency.modules;
 
-import android.app.Activity;
 import android.content.Context;
 
-import com.seniors.androidseed.dependency.ApplicationScope;
 import com.seniors.androidseed.helpers.AppUtils;
 
 import java.io.IOException;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -25,7 +25,7 @@ import static com.seniors.androidseed.helpers.AppUtils.AUTH_KEY;
 @Module(includes = AppModule.class)
 public class ClientModule {
     @Provides
-    @ApplicationScope
+    @Singleton
     public HttpLoggingInterceptor getLogger(){
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -33,7 +33,7 @@ public class ClientModule {
     }
 
     @Provides
-    @ApplicationScope
+    @Singleton
     public Interceptor getAuth(final Context appContext){
         return new Interceptor() {
             @Override
@@ -46,7 +46,7 @@ public class ClientModule {
     }
 
     @Provides
-    @ApplicationScope
+    @Singleton
     public OkHttpClient getClient(HttpLoggingInterceptor logger, Interceptor authInterceptor){
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
         clientBuilder.networkInterceptors().add(logger);

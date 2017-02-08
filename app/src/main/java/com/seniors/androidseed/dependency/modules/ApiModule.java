@@ -1,7 +1,8 @@
 package com.seniors.androidseed.dependency.modules;
 
 import com.seniors.androidseed.data.Api;
-import com.seniors.androidseed.dependency.ApplicationScope;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -15,7 +16,7 @@ import okhttp3.OkHttpClient;
 public class ApiModule {
 
     @Provides
-    @ApplicationScope
+    @Singleton
     public Api getApi(OkHttpClient http){
         return Api.Creator.create(http);
     }

@@ -2,7 +2,7 @@ package com.seniors.androidseed.dependency.modules;
 
 import android.content.Context;
 
-import com.seniors.androidseed.dependency.ApplicationScope;
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -20,7 +20,7 @@ public class AppModule {
     }
 
     @Provides
-    @ApplicationScope
+    @Singleton
     Context getAppContext(){
         return appContext;
     }

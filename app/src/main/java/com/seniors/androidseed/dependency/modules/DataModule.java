@@ -2,7 +2,8 @@ package com.seniors.androidseed.dependency.modules;
 
 import com.seniors.androidseed.data.Api;
 import com.seniors.androidseed.data.DataManager;
-import com.seniors.androidseed.dependency.ApplicationScope;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -15,7 +16,7 @@ import dagger.Provides;
 public class DataModule {
 
     @Provides
-    @ApplicationScope
+    @Singleton
     DataManager getDataManager(Api apiService){
         return new DataManager(apiService);
     }

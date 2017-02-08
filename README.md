@@ -21,3 +21,51 @@ Imagine you have to implement a sign in screen.
 6. Create a `SignInPresenterTest`and write unit tests for `signIn(email)`. Remember to mock the  `SignInView` and also the `DataManager`.
 7. Make your  `ActivitySignIn` implement `SignInView` and implement the required methods like `showSignInSuccessful()`
 8. In your activity, inject a new instance of `SignInPresenter` and call `presenter.attach(this)` from `onCreate` and `presenter.detach()` from `onDestroy()`. Also, set up a click listener in your button that calls `presenter.signIn(email)`.
+
+## Event bus ##
+
+when you want to emit an event from anywhere and subscribe to this event from any other place (ex. presenter):
+1. create event class
+```
+class MyEvent{
+    private String message;
+    private Integer identifier;
+
+    public MyEvent(Integer id, String msg){
+        message = msg;
+        identifier = id;
+    }
+
+    public String getMsg(){
+        return message;
+    }
+}
+```
+
+2. subscribe this event anywhere
+```
+    // attach(View)
+    // ...
+    Consumer<MyEvent> consumer = new Consumer<MyEvent>() {
+
+        @Override
+        public void accept(MyEvent e) throws Exception {
+            // your code go here
+            Toast.makeText((Activity)getView(), e.getMsg(), Toast.LENGTH_LONG)
+                    .show();
+        }
+    };
+    busDisposable = bus.filteredObservable(String.class)
+            .subscribeOn(AndroidSchedulers.mainThread())
+            .subscribe(consumer);
+```
+
+3. where you want to emit the event
+```
+    bus.post(password);
+```
+
+4. don't forget to despose
+```
+    busDisposable.dispose();
+```
