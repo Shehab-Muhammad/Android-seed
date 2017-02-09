@@ -2,8 +2,11 @@ package com.seniors.androidseed.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.seniors.androidseed.R;
 import com.seniors.androidseed.dependency.components.AppComponent;
@@ -38,6 +41,12 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @BindView(R.id.username)
     EditText username;
 
+    @BindView(R.id.LoginForm)
+    LinearLayout loginForm;
+
+    @BindView(R.id.loginLoading)
+    ProgressBar loading;
+
     @Override
     public void startMainActivity() {
         if(!getIntent().getBooleanExtra(ARG_IS_ADDING_NEW_ACCOUNT, false)){
@@ -50,17 +59,20 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
         if(mPresenter.hasToken()){
+            startMainActivity();
             return;
         }
-        setContentView(R.layout.activity_login);
-
         ButterKnife.bind(this);
+        loading.setVisibility(View.INVISIBLE);
+        loginForm.setVisibility(View.VISIBLE);
     }
 
     @OnClick(R.id.loginButton)
     void login(){
         mPresenter.login(username.getText().toString(), userPassword.getText().toString());
+        startMainActivity();
     }
 
     @Override

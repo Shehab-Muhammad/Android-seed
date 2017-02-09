@@ -22,6 +22,7 @@ import java.io.IOException;
 public class AppUtils {
 
     public static String AUTH_KEY = "Authorization";
+    public static String UNAUTHORIZED_EVENT = "unauthorized user";
 
     public static class AuthUtils{
         String authToken = null;
